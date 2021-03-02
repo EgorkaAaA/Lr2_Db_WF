@@ -197,6 +197,11 @@ namespace Lr2_Db_WF
                 }
         }
 
+        private void comboBox1_MouseLeave_1(object sender, EventArgs e)
+        {
+            comboBox1_MouseLeave(sender, e);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0)
@@ -222,7 +227,7 @@ namespace Lr2_Db_WF
                 {
                     Plan = textBox1.Text,
                     Backery_Id = Convert.ToInt32(textBox3.Text),
-                    Staff_Id= Convert.ToInt32(textBox2.Text)
+                    Staff_Id = Convert.ToInt32(textBox2.Text)
                 };
                 ShiftsSet.ShiftsSetAdd(ShiftsSet);
                 ShiftsSetDataGridFill();
@@ -237,79 +242,6 @@ namespace Lr2_Db_WF
                 };
                 DeliveriesSet.DeliveriesSetAdd(DeliveriesSet);
                 DeliveriesSetDataGridFill();
-            }
-        }
-
-        private void Grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            BakeryEntities db = new BakeryEntities();
-            if (e.ColumnIndex == 0)
-            {
-                if (comboBox1.SelectedIndex == 0)
-                {
-                    int i = 0;
-                    BackerySet BackerySet = new BackerySet();
-                    foreach (var a in db.BackerySet)
-                    {
-                        if (i == e.RowIndex - 1)
-                        {
-                            BackerySet = a;
-                        }
-                        i++;
-
-                    }
-                    db.BackerySet.Remove(BackerySet);
-                    db.SaveChanges();
-                    BackerySetDataGridFill();
-                }
-                else if (comboBox1.SelectedIndex == 1)
-                {
-                    int i = 0;
-                    StaffSet StaffSet = new StaffSet();
-                    foreach (var a in db.StaffSet)
-                    {
-                        if (i == e.RowIndex - 1)
-                        {
-                            StaffSet = a;
-                        }
-                        i++;
-                    }
-                    db.StaffSet.Remove(StaffSet);
-                    db.SaveChanges();
-                    manufactureDataGridFill();
-                }
-                else if (comboBox1.SelectedIndex == 2)
-                {
-                    int i = 0;
-                    ShiftsSet ShiftsSet = new ShiftsSet();
-                    foreach (var a in db.ShiftsSet)
-                    {
-                        if (i == e.RowIndex - 1)
-                        {
-                            ShiftsSet = a;
-                        }
-                        i++;
-                    }
-                    db.ShiftsSet.Remove(ShiftsSet);
-                    db.SaveChanges();
-                    ShiftsSetDataGridFill();
-                }
-                else if (comboBox1.SelectedIndex == 3)
-                {
-                    int i = 0;
-                    DeliveriesSet DeliveriesSet = new DeliveriesSet();
-                    foreach (var a in db.DeliveriesSet)
-                    {
-                        if (i == e.RowIndex - 1)
-                        {
-                            DeliveriesSet = a;
-                        }
-                        i++;
-                    }
-                    db.DeliveriesSet.Remove(DeliveriesSet);
-                    db.SaveChanges();
-                    DeliveriesSetDataGridFill();
-                }
             }
         }
 
@@ -490,9 +422,77 @@ namespace Lr2_Db_WF
                 }
         }
 
-        private void comboBox1_MouseLeave_1(object sender, EventArgs e)
+        private void Grid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox1_MouseLeave(sender, e);
+            BakeryEntities db = new BakeryEntities();
+            if (e.ColumnIndex == 0)
+            {
+                if (comboBox1.SelectedIndex == 0)
+                {
+                    int i = 0;
+                    BackerySet BackerySet = new BackerySet();
+                    foreach (var a in db.BackerySet)
+                    {
+                        if (i == e.RowIndex - 1)
+                        {
+                            BackerySet = a;
+                        }
+                        i++;
+
+                    }
+                    db.BackerySet.Remove(BackerySet);
+                    db.SaveChanges();
+                    BackerySetDataGridFill();
+                }
+                else if (comboBox1.SelectedIndex == 1)
+                {
+                    int i = 0;
+                    StaffSet StaffSet = new StaffSet();
+                    foreach (var a in db.StaffSet)
+                    {
+                        if (i == e.RowIndex - 1)
+                        {
+                            StaffSet = a;
+                        }
+                        i++;
+                    }
+                    db.StaffSet.Remove(StaffSet);
+                    db.SaveChanges();
+                    manufactureDataGridFill();
+                }
+                else if (comboBox1.SelectedIndex == 2)
+                {
+                    int i = 0;
+                    ShiftsSet ShiftsSet = new ShiftsSet();
+                    foreach (var a in db.ShiftsSet)
+                    {
+                        if (i == e.RowIndex - 1)
+                        {
+                            ShiftsSet = a;
+                        }
+                        i++;
+                    }
+                    db.ShiftsSet.Remove(ShiftsSet);
+                    db.SaveChanges();
+                    ShiftsSetDataGridFill();
+                }
+                else if (comboBox1.SelectedIndex == 3)
+                {
+                    int i = 0;
+                    DeliveriesSet DeliveriesSet = new DeliveriesSet();
+                    foreach (var a in db.DeliveriesSet)
+                    {
+                        if (i == e.RowIndex - 1)
+                        {
+                            DeliveriesSet = a;
+                        }
+                        i++;
+                    }
+                    db.DeliveriesSet.Remove(DeliveriesSet);
+                    db.SaveChanges();
+                    DeliveriesSetDataGridFill();
+                }
+            }
         }
     }
 }

@@ -48,11 +48,13 @@
             this.Grid.Name = "Grid";
             this.Grid.Size = new System.Drawing.Size(612, 323);
             this.Grid.TabIndex = 0;
+            this.Grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellContentClick_1);
+            this.Grid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(644, 43);
+            this.label1.Location = new System.Drawing.Point(644, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -78,21 +80,21 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(712, 40);
+            this.textBox1.Location = new System.Drawing.Point(759, 40);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 5;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(712, 73);
+            this.textBox2.Location = new System.Drawing.Point(759, 73);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(712, 106);
+            this.textBox3.Location = new System.Drawing.Point(759, 106);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 7;
@@ -105,7 +107,7 @@
             "Сотрудники",
             "Смены",
             "Поставки "});
-            this.comboBox1.Location = new System.Drawing.Point(618, 0);
+            this.comboBox1.Location = new System.Drawing.Point(618, 160);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 9;
@@ -123,12 +125,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(737, 167);
+            this.button1.Location = new System.Drawing.Point(759, 158);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 11;
             this.button1.Text = "Добавить ";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
