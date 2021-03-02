@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BakeryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BackerySet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adres" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveriesSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="numberOfCakes" Type="smallint" Nullable="false" />
+          <Property Name="Backery_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShiftsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plan" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Staff_Id" Type="int" Nullable="false" />
+          <Property Name="Backery_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StaffSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BackeryDeliveries">
+          <End Role="BackerySet" Type="Self.BackerySet" Multiplicity="1" />
+          <End Role="DeliveriesSet" Type="Self.DeliveriesSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BackerySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveriesSet">
+              <PropertyRef Name="Backery_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BackeryShifts">
+          <End Role="BackerySet" Type="Self.BackerySet" Multiplicity="1" />
+          <End Role="ShiftsSet" Type="Self.ShiftsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BackerySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShiftsSet">
+              <PropertyRef Name="Backery_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffShifts">
+          <End Role="StaffSet" Type="Self.StaffSet" Multiplicity="1" />
+          <End Role="ShiftsSet" Type="Self.ShiftsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShiftsSet">
+              <PropertyRef Name="Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BakeryModelContainer">
+          <EntitySet Name="BackerySet" EntityType="Self.BackerySet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveriesSet" EntityType="Self.DeliveriesSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftsSet" EntityType="Self.ShiftsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffSet" EntityType="Self.StaffSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BackeryDeliveries" Association="Self.FK_BackeryDeliveries">
+            <End Role="BackerySet" EntitySet="BackerySet" />
+            <End Role="DeliveriesSet" EntitySet="DeliveriesSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BackeryShifts" Association="Self.FK_BackeryShifts">
+            <End Role="BackerySet" EntitySet="BackerySet" />
+            <End Role="ShiftsSet" EntitySet="ShiftsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffShifts" Association="Self.FK_StaffShifts">
+            <End Role="StaffSet" EntitySet="StaffSet" />
+            <End Role="ShiftsSet" EntitySet="ShiftsSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BakeryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BackerySet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DeliveriesSet" Relationship="Self.FK_BackeryDeliveries" FromRole="BackerySet" ToRole="DeliveriesSet" />
+          <NavigationProperty Name="ShiftsSet" Relationship="Self.FK_BackeryShifts" FromRole="BackerySet" ToRole="ShiftsSet" />
+        </EntityType>
+        <EntityType Name="DeliveriesSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numberOfCakes" Type="Int16" Nullable="false" />
+          <Property Name="Backery_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BackerySet" Relationship="Self.FK_BackeryDeliveries" FromRole="DeliveriesSet" ToRole="BackerySet" />
+        </EntityType>
+        <EntityType Name="ShiftsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Staff_Id" Type="Int32" Nullable="false" />
+          <Property Name="Backery_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BackerySet" Relationship="Self.FK_BackeryShifts" FromRole="ShiftsSet" ToRole="BackerySet" />
+          <NavigationProperty Name="StaffSet" Relationship="Self.FK_StaffShifts" FromRole="ShiftsSet" ToRole="StaffSet" />
+        </EntityType>
+        <EntityType Name="StaffSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ShiftsSet" Relationship="Self.FK_StaffShifts" FromRole="StaffSet" ToRole="ShiftsSet" />
+        </EntityType>
+        <Association Name="FK_BackeryDeliveries">
+          <End Role="BackerySet" Type="Self.BackerySet" Multiplicity="1" />
+          <End Role="DeliveriesSet" Type="Self.DeliveriesSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BackerySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveriesSet">
+              <PropertyRef Name="Backery_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BackeryShifts">
+          <End Role="BackerySet" Type="Self.BackerySet" Multiplicity="1" />
+          <End Role="ShiftsSet" Type="Self.ShiftsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BackerySet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShiftsSet">
+              <PropertyRef Name="Backery_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StaffShifts">
+          <End Role="StaffSet" Type="Self.StaffSet" Multiplicity="1" />
+          <End Role="ShiftsSet" Type="Self.ShiftsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShiftsSet">
+              <PropertyRef Name="Staff_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BakeryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BackerySet" EntityType="Self.BackerySet" />
+          <EntitySet Name="DeliveriesSet" EntityType="Self.DeliveriesSet" />
+          <EntitySet Name="ShiftsSet" EntityType="Self.ShiftsSet" />
+          <EntitySet Name="StaffSet" EntityType="Self.StaffSet" />
+          <AssociationSet Name="FK_BackeryDeliveries" Association="Self.FK_BackeryDeliveries">
+            <End Role="BackerySet" EntitySet="BackerySet" />
+            <End Role="DeliveriesSet" EntitySet="DeliveriesSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BackeryShifts" Association="Self.FK_BackeryShifts">
+            <End Role="BackerySet" EntitySet="BackerySet" />
+            <End Role="ShiftsSet" EntitySet="ShiftsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffShifts" Association="Self.FK_StaffShifts">
+            <End Role="StaffSet" EntitySet="StaffSet" />
+            <End Role="ShiftsSet" EntitySet="ShiftsSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BakeryModelContainer" CdmEntityContainer="BakeryEntities">
+          <EntitySetMapping Name="BackerySet">
+            <EntityTypeMapping TypeName="BakeryModel.BackerySet">
+              <MappingFragment StoreEntitySet="BackerySet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveriesSet">
+            <EntityTypeMapping TypeName="BakeryModel.DeliveriesSet">
+              <MappingFragment StoreEntitySet="DeliveriesSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="numberOfCakes" ColumnName="numberOfCakes" />
+                <ScalarProperty Name="Backery_Id" ColumnName="Backery_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftsSet">
+            <EntityTypeMapping TypeName="BakeryModel.ShiftsSet">
+              <MappingFragment StoreEntitySet="ShiftsSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Plan" ColumnName="Plan" />
+                <ScalarProperty Name="Staff_Id" ColumnName="Staff_Id" />
+                <ScalarProperty Name="Backery_Id" ColumnName="Backery_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffSet">
+            <EntityTypeMapping TypeName="BakeryModel.StaffSet">
+              <MappingFragment StoreEntitySet="StaffSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
