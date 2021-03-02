@@ -15,8 +15,7 @@ namespace Lr2_Db_WF
     
     public partial class BakeryEntities : DbContext
     {
-        public BakeryEntities()
-            : base("name=BakeryEntities")
+        public BakeryEntities(): base("name=BakeryEntities")
         {
         }
     
