@@ -69,8 +69,8 @@ namespace Lr2_Db_WF
             Grid.DataSource = db.DeliveriesSet.Local.ToBindingList();
             DeleteButtom(Grid.RowCount);
             Grid.Columns[1].HeaderText = "Адресс доставки";
-            Grid.Columns[2].HeaderText = "Булочная";
-            Grid.Columns[3].HeaderText = "Количестов тортов";
+            Grid.Columns[2].HeaderText = "Количестов тортов";
+            Grid.Columns[3].HeaderText = "Булочная";
         }                               
 
         private void DeleteButtom(int rowsCount)
@@ -137,7 +137,7 @@ namespace Lr2_Db_WF
                 {
                     if (e.ColumnIndex == 1)
                     {
-                        BackerySet backerySet = db.BackerySet.Find(e.RowIndex);
+                        BackerySet backerySet = db.BackerySet.Find(Grid[0, e.RowIndex].Value);
                         backerySet.adres = Grid[e.ColumnIndex, e.RowIndex].Value.ToString();
                         db.SaveChanges();
                         BackerySetDataGridFill();
@@ -148,21 +148,21 @@ namespace Lr2_Db_WF
                 {
                     if (e.ColumnIndex == 1)
                     {
-                        StaffSet staffSet = db.StaffSet.Find(e.RowIndex);
+                        StaffSet staffSet = db.StaffSet.Find(Grid[0, e.RowIndex].Value);
                         staffSet.Surname = Grid[e.ColumnIndex, e.RowIndex].Value.ToString();
                         db.SaveChanges();
                         StaffSetDataGridFill();
                     }
                     else if (e.ColumnIndex == 2)
                     {
-                        StaffSet staffSet = db.StaffSet.Find(e.RowIndex);
+                        StaffSet staffSet = db.StaffSet.Find(Grid[0, e.RowIndex].Value);
                         staffSet.name = Grid[e.ColumnIndex, e.RowIndex].Value.ToString();
                         db.SaveChanges();
                         StaffSetDataGridFill();
                     }
                     else if (e.ColumnIndex == 3)
                     {
-                        StaffSet staffSet = db.StaffSet.Find(e.RowIndex);
+                        StaffSet staffSet = db.StaffSet.Find(Grid[0, e.RowIndex].Value);
                         staffSet.patronymic = Grid[e.ColumnIndex, e.RowIndex].Value.ToString();
                         db.SaveChanges();
                         StaffSetDataGridFill();
@@ -172,21 +172,21 @@ namespace Lr2_Db_WF
                 {
                     if (e.ColumnIndex == 1)
                     {
-                        DeliveriesSet deliveriesSet = db.DeliveriesSet.Find(e.RowIndex);
+                        DeliveriesSet deliveriesSet = db.DeliveriesSet.Find(Grid[0, e.RowIndex].Value);
                         deliveriesSet.adres= Grid[e.ColumnIndex, e.RowIndex].Value.ToString();
                         db.SaveChanges();
                         DeliveriesSetDataGridFill();
                     }
                     else if (e.ColumnIndex == 3)
                     {
-                        DeliveriesSet deliveriesSet = db.DeliveriesSet.Find(e.RowIndex);
+                        DeliveriesSet deliveriesSet = db.DeliveriesSet.Find(Grid[0, e.RowIndex].Value);
                         deliveriesSet.Backery_Id = Convert.ToInt32(Grid[e.ColumnIndex, e.RowIndex].Value.ToString());
                         db.SaveChanges();
                         DeliveriesSetDataGridFill();
                     }
                     else if (e.ColumnIndex == 2)
                     {
-                        DeliveriesSet deliveriesSet = db.DeliveriesSet.Find(e.RowIndex);
+                        DeliveriesSet deliveriesSet = db.DeliveriesSet.Find(Grid[0, e.RowIndex].Value);
                         deliveriesSet.numberOfCakes = Convert.ToInt16(Grid[e.ColumnIndex, e.RowIndex].Value.ToString());
                         db.SaveChanges();
                         DeliveriesSetDataGridFill();
@@ -196,21 +196,21 @@ namespace Lr2_Db_WF
                 {
                     if (e.ColumnIndex == 1)
                     {
-                        ShiftsSet shifts = db.ShiftsSet.Find(e.RowIndex);
+                        ShiftsSet shifts = db.ShiftsSet.Find(Grid[0, e.RowIndex].Value);
                         shifts.Plan = Grid[e.ColumnIndex, e.RowIndex].Value.ToString();
                         db.SaveChanges();
                         ShiftsSetDataGridFill();
                     }
                     else if (e.ColumnIndex == 2)
                     {
-                        ShiftsSet shifts = db.ShiftsSet.Find(e.RowIndex);
+                        ShiftsSet shifts = db.ShiftsSet.Find(Grid[0, e.RowIndex].Value);
                         shifts.Backery_Id = Convert.ToInt32(Grid[e.ColumnIndex, e.RowIndex].Value.ToString());
                         db.SaveChanges();
                         ShiftsSetDataGridFill();
                     }
                     else if (e.ColumnIndex == 3)
                     {
-                        ShiftsSet shifts = db.ShiftsSet.Find(e.RowIndex);
+                        ShiftsSet shifts = db.ShiftsSet.Find(Grid[0, e.RowIndex].Value);
                         shifts.Staff_Id = Convert.ToInt32(Grid[e.ColumnIndex, e.RowIndex].Value.ToString());
                         db.SaveChanges();
                         ShiftsSetDataGridFill();
@@ -225,28 +225,28 @@ namespace Lr2_Db_WF
             {
                 if (comboBox1.SelectedIndex == 0)
                 {
-                    BackerySet BackerySet = db.BackerySet.Find(e.RowIndex);
+                    BackerySet BackerySet = db.BackerySet.Find(Grid[0, e.RowIndex].Value);
                     db.BackerySet.Remove(BackerySet);
                     db.SaveChanges();
                     BackerySetDataGridFill();
                 }
                 else if (comboBox1.SelectedIndex == 1)
                 {
-                    StaffSet StaffSet = db.StaffSet.Find(e.RowIndex);
+                    StaffSet StaffSet = db.StaffSet.Find(Grid[0, e.RowIndex].Value);
                     db.StaffSet.Remove(StaffSet);
                     db.SaveChanges();
                     StaffSetDataGridFill();
                 }
                 else if (comboBox1.SelectedIndex == 2)
                 {
-                    ShiftsSet ShiftsSet = db.ShiftsSet.Find(e.RowIndex);
+                    ShiftsSet ShiftsSet = db.ShiftsSet.Find(Grid[0, e.RowIndex].Value);
                     db.ShiftsSet.Remove(ShiftsSet);
                     db.SaveChanges();
                     ShiftsSetDataGridFill();
                 }
                 else if (comboBox1.SelectedIndex == 3)
                 {
-                    DeliveriesSet DeliveriesSet = db.DeliveriesSet.Find(e.RowIndex);
+                    DeliveriesSet DeliveriesSet = db.DeliveriesSet.Find(Grid[0, e.RowIndex].Value);
                     db.DeliveriesSet.Remove(DeliveriesSet);
                     db.SaveChanges();
                     DeliveriesSetDataGridFill();
